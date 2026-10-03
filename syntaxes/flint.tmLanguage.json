@@ -1,0 +1,61 @@
+{
+  "scopeName": "source.flint",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#functions" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [{ "name": "comment.line.number-sign.flint", "match": "#.*$" }]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.flint",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "name": "constant.character.escape.flint", "match": "\\\\.|\\\\n|\\\\t" }]
+        },
+        { "name": "string.quoted.single.flint", "begin": "'", "end": "'" }
+      ]
+    },
+    "numbers": {
+      "patterns": [{ "name": "constant.numeric.flint", "match": "\\b[0-9]+\\b" }]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b(def)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.control.flint" },
+            "2": { "name": "entity.name.function.flint" }
+          }
+        },
+        { "name": "support.function.builtin.flint", "match": "\\b(print|input|len|abs|min|max|sum|pow|range)\\b" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.flint", "match": "\\b(def|return|if|elif|else|while|for|in|not|and|or|break|continue|pass|True|False)\\b" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "name": "storage.type.flint", "match": "\\b(i32|bool|str|list)\\b" }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.flint",
+          "match": "(&=|\\|=|\\^=|<<=|>>=|\\+=|-=|\\*=|/=|//=|%=|==|!=|<=|>=|<<|>>|\\||&|\\^|~|<|>|=|\\+|-|\\*|/|%)"
+        }
+      ]
+    }
+  }
+}

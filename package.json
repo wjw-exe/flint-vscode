@@ -1,0 +1,49 @@
+{
+  "name": "flint-language",
+  "displayName": "Flint Language",
+  "description": "Flint — Python 风格、编译型语言：.fl 语法高亮 + 一键运行(VM/原生) + 编译为 exe",
+  "version": "1.0.0",
+  "publisher": "flint-lang",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Programming Languages", "Other"],
+  "activationEvents": ["onLanguage:flint"],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [{
+      "id": "flint",
+      "aliases": ["Flint", "flint"],
+      "extensions": [".fl"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "flint",
+      "scopeName": "source.flint",
+      "path": "./syntaxes/flint.tmLanguage.json"
+    }],
+    "commands": [
+      { "command": "flint.run", "title": "Flint: 运行当前文件 (VM)" },
+      { "command": "flint.runNative", "title": "Flint: 原生编译运行 (--native)" },
+      { "command": "flint.compile", "title": "Flint: 编译为可执行文件 (.exe)" }
+    ],
+    "keybindings": [
+      { "command": "flint.run", "key": "ctrl+alt+r", "when": "editorLangId == flint" }
+    ],
+    "menus": {
+      "editor/context": [
+        { "command": "flint.run", "when": "editorLangId == flint", "group": "navigation@1" },
+        { "command": "flint.runNative", "when": "editorLangId == flint", "group": "navigation@2" },
+        { "command": "flint.compile", "when": "editorLangId == flint", "group": "navigation@3" }
+      ]
+    },
+    "configuration": {
+      "title": "Flint",
+      "properties": {
+        "flint.exePath": {
+          "type": "string",
+          "default": "",
+          "description": "flint.exe 的路径。留空则自动查找 workspace 的 dist/flint.exe 或同级 flint-windows/dist/flint.exe"
+        }
+      }
+    }
+  }
+}
