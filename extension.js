@@ -82,6 +82,13 @@ function activate(context) {
             const exe = findFlintExe(doc);
             if (!exe) return vscode.window.showErrorMessage('未找到 flint.exe');
             runInTerminal(exe, ['gfx', doc.uri.fsPath], path.dirname(doc.uri.fsPath), 'Flint gfx');
+        }),
+        vscode.commands.registerCommand('flint.ui', () => {
+            const doc = activeDoc();
+            if (!doc) return vscode.window.showWarningMessage('请先打开一个 .fl 文件');
+            const exe = findFlintExe(doc);
+            if (!exe) return vscode.window.showErrorMessage('未找到 flint.exe');
+            runInTerminal(exe, ['ui', doc.uri.fsPath], path.dirname(doc.uri.fsPath), 'Flint UI');
         })
     );
 }

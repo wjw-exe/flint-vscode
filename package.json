@@ -1,8 +1,8 @@
 {
   "name": "flint-language",
   "displayName": "Flint Language",
-  "description": "Flint v3.1 — Python 风格、编译型语言：.fl 语法高亮 + 一键运行(VM/原生/gfx) + 编译为 exe",
-  "version": "3.1.2",
+  "description": "Flint v3.2 — Python 风格、编译型语言：.fl 语法高亮 + 一键运行(VM/原生/gfx/UI) + 编译为 exe",
+  "version": "3.2.0",
   "publisher": "flint-lang",
   "engines": {
     "vscode": "^1.80.0"
@@ -53,6 +53,11 @@
       {
         "command": "flint.gfx",
         "title": "Flint: 图形模式运行 (gfx)"
+      },
+      {
+        "command": "flint.ui",
+        "title": "Flint: UI 模式运行 (ui)",
+        "icon": "$(layout)"
       }
     ],
     "keybindings": [
@@ -83,6 +88,11 @@
           "command": "flint.gfx",
           "when": "editorLangId == flint",
           "group": "navigation@4"
+        },
+        {
+          "command": "flint.ui",
+          "when": "editorLangId == flint",
+          "group": "navigation@5"
         }
       ],
       "editor/title": [
@@ -90,6 +100,11 @@
           "command": "flint.run",
           "when": "editorLangId == flint",
           "group": "navigation@0"
+        },
+        {
+          "command": "flint.ui",
+          "when": "editorLangId == flint",
+          "group": "navigation@1"
         }
       ]
     },
