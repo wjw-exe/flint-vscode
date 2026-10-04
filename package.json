@@ -2,7 +2,7 @@
   "name": "flint-language",
   "displayName": "Flint Language",
   "description": "Flint v3.1 — Python 风格、编译型语言：.fl 语法高亮 + 一键运行(VM/原生/gfx) + 编译为 exe",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "publisher": "flint-lang",
   "engines": {
     "vscode": "^1.80.0"
