@@ -37,11 +37,19 @@ function activeDoc() {
     return doc && doc.languageId === 'flint' ? doc : null;
 }
 
+// 终端命令兼容: PowerShell 调用带引号的可执行文件必须加 & 调用运算符,
+// cmd / bash 直接写 "exe" 即可。vscode.env.shell 返回默认终端 shell 路径。
+function shellNeedsAmp() {
+    const sh = (vscode.env.shell || '').toLowerCase().replace(/\\/g, '/');
+    return sh.includes('powershell') || sh.includes('pwsh');
+}
+
 function runInTerminal(exe, args, cwd, name) {
     const term = vscode.window.createTerminal({ name: name || 'Flint', cwd: cwd });
     term.show();
     const q = (s) => '"' + s + '"';
-    term.sendText(q(exe) + ' ' + args.map(q).join(' '));
+    const cmd = (shellNeedsAmp() ? '& ' : '') + q(exe) + ' ' + args.map(q).join(' ');
+    term.sendText(cmd);
 }
 
 function activate(context) {
