@@ -36,7 +36,8 @@
             "2": { "name": "entity.name.function.flint" }
           }
         },
-        { "name": "support.function.builtin.flint", "match": "\\b(print|input|len|abs|min|max|sum|pow|range)\\b" }
+        { "name": "support.function.builtin.flint", "match": "\\b(print|input|len|abs|min|max|sum|pow|range|sqrt|gcd|clamp)\\b" },
+        { "name": "support.function.builtin.flint", "match": "\\b(str)(?=\\s*\\()" }
       ]
     },
     "keywords": {

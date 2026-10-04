@@ -53,6 +53,13 @@ function activate(context) {
             if (!exe) return vscode.window.showErrorMessage('未找到 flint.exe');
             const out = path.join(path.dirname(doc.uri.fsPath), path.basename(doc.uri.fsPath, '.fl') + '.exe');
             runInTerminal(exe, ['native', doc.uri.fsPath, '-o', out], path.dirname(doc.uri.fsPath), 'Flint compile');
+        }),
+        vscode.commands.registerCommand('flint.gfx', () => {
+            const doc = activeDoc();
+            if (!doc) return vscode.window.showWarningMessage('请先打开一个 .fl 文件');
+            const exe = findFlintExe();
+            if (!exe) return vscode.window.showErrorMessage('未找到 flint.exe');
+            runInTerminal(exe, ['gfx', doc.uri.fsPath], path.dirname(doc.uri.fsPath), 'Flint gfx');
         })
     );
 }
